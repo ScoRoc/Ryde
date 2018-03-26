@@ -69,155 +69,163 @@ Ryde Homepage
 
 #### User
 
-name: {
+- name: {
     type: String,
     required: true,
     minLength: 1,
     maxLength: 99
-  },
-  email: {
+  }
+
+- email: {
     type: String,
     required: true,
     unique: true,
     minLength: 5,
     maxLength: 99
   },
-  password: {
+
+- password: {
     type: String,
     required: true,
     minLength: 8,
     maxLength: 99
   },
-  homeAddress: {
+
+- homeAddress: {
     street: String,
-    city: {
+    - city: {
       type: String,
       required: true
     },
-    state: {
+
+-  state: {
       type: String,
       required: true,
       minLength: 2,
       maxLength: 2
     },
-    zip: Number
+    - zip: Number
   },
-  workAddress: {
-    street: String,
-    city: {
+
+- workAddress: {
+    - street: String,
+    - city: {
       type: String,
     },
-    state: {
+    - state: {
       type: String,
       minLength: 2,
       maxLength: 2
     },
-    zip: Number
+    - zip: Number
   },
-  dob: {
+
+- dob: {
     type: String,
     required: true
   },
-  dryver: {
+
+- dryver: {
     type:Boolean,
     default: false,
   },
-  car: String,
-  license: String,
-  dryverRatings: Array,
-  dryverRatingAvg: Number,
-  dryverReviews: Array,
-  ryderRatings: Array,
-  ryderRatingAvg: Number,
-  ryderReviews: Array,
-  reviewedDryvers: Array,
-  reviewedRyders: Array,
-  setTrips: Array,
-  pendingTrips: Array,
-  deniedTrips: Array,
-  completedTrips: {
+
+- car: String,
+- license: String,
+- dryverRatings: Array,
+- dryverRatingAvg: Number,
+- dryverReviews: Array,
+- ryderRatings: Array,
+- ryderRatingAvg: Number,
+- ryderReviews: Array,
+- reviewedDryvers: Array,
+- reviewedRyders: Array,
+- setTrips: Array,
+- pendingTrips: Array,
+- deniedTrips: Array,
+- completedTrips: {
     type:Array,
     default:[]
   },
-  deletedDryves: {
+- deletedDryves: {
     type:Array,
     default:[]
   },
-  completedDryves: Array,
-  image: String,
-  trips: [{ type: Schema.Types.ObjectId, ref: 'Trips' }]
+- completedDryves: Array,
+- image: String,
+- trips: [{ type: Schema.Types.ObjectId, ref: 'Trips' }]
 })
 
 #### Trip
-driverId: {
+- driverId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  rydeName: {
+- rydeName: {
     type: String,
     required: true
   },
-  startAddress: {
-    street: String,
-    city: {
+- startAddress: {
+    - street: String,
+    - city: {
       type: String,
       required: true
     },
-    state: {
+    - state: {
       type: String,
       required: true,
       minLength: 2,
       maxLength: 2
     },
-    zip: Number
+    - zip: Number
   },
-  endAddress: {
-    street: String,
-    city: {
+- endAddress: {
+    - street: String,
+    - city: {
       type: String,
       required: true
     },
-    state: {
+    - state: {
       type: String,
       required: true,
       minLength: 2,
       maxLength: 2
     },
-    zip: Number
+    - zip: Number
   },
-  departDate: {
+- departDate: {
     type: Number,
     required: true
   },
-  reoccurring: {
+- reoccurring: {
     type: Boolean,
     required: true
   },
-  reoccurringDays: Array,
-  cost: {
+- reoccurringDays: Array,
+  - cost: {
     type: Number,
     required: true
   },
-  costBreakdown: String,
-  smoking: Boolean,
-  pets: Boolean,
-  carType: {
+- costBreakdown: String,
+- smoking: Boolean,
+- pets: Boolean,
+- carType: {
     type: String,
     required: true
   },
-  seats: {
+- seats: {
     type: Number,
     required: true
   },
-  comments: Array,
-  ridersId: Array,
-  pendingRiders: Array,
-  deniedRiders: Array,
-  completed: {
+- comments: Array,
+- ridersId: Array,
+- pendingRiders: Array,
+- deniedRiders: Array,
+- completed: {
     type:Boolean,
     default: false},
-  deleted: {
+- deleted: {
     type:Boolean,
     default: false
   }
