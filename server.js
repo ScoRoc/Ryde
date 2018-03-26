@@ -150,6 +150,7 @@ app.post('/bigsearch', (req, res, next) => {
     } else {
       trips.forEach((trip,index)=>{
         console.log('each trip time: ',trip.departDate);
+        console.log('each trip time: ',new Date(trip.departDate).toUTCString());
 
         // console.log('trip date: ',(new Date(trip.departDate)).toUTCString());
         // console.log('search date: ',(new Date(req.body.dateTime)).toUTCString());

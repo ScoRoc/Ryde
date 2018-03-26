@@ -81,7 +81,7 @@ class ConnectedListCard extends Component {
       })
     })
   }
-  
+
   handleDeleted = () =>{
     let rydeId = this.props.ryde._id
     let userId = this.props.user._id
