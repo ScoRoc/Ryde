@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { logout } from '../redux/actions/index';
 
-const mapDispatchToProps = dispatch =>{
+const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logout())
   }
@@ -27,31 +27,31 @@ class ConnectedDeleteUser extends Component {
     }
   }
 
-  handleEmailChange = (e) =>{
+  handleEmailChange = (e) => {
     e.preventDefault()
     this.setState({
       email: e.target.value
     })
   }
-  handlePasswordChange = (e) =>{
+  handlePasswordChange = (e) => {
     e.preventDefault()
     this.setState({
       password: e.target.value
     })
   }
-  handleUserDeletionSubmit = (e) =>{
+  handleUserDeletionSubmit = (e) => {
     e.preventDefault()
     let email = this.state.email
     let password = this.state.password
     let userId = this.props.user._id
     console.log(email, password);
-    if(email === this.props.user.email){
+    if(email === this.props.user.email) {
       axios({
-        url: '/deleteuser',
+        url: '/profile/' + userId,
         method: 'delete',
         data: {email, password, userId}
-      }).then(result =>{
-        if(result.data.msg === false){
+      }).then(result => {
+        if(result.data.msg === false) {
           this.setState({
             wrongPassword: true,
             wrongEmail: false
@@ -79,7 +79,7 @@ class ConnectedDeleteUser extends Component {
       return (<Redirect to={{ pathname: this.props.currentPage }} />)
     }
     var check = ''
-    if(this.state.wrongEmail){
+    if(this.state.wrongEmail) {
       check = <div className='border-background-red'>You have entered a wrong email</div>
     } else if (this.state.wrongPassword){
       check = <div className='border-background-red'>You have entered a wrong Password</div>

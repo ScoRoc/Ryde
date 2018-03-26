@@ -12,15 +12,11 @@ https://ryde.herokuapp.com/
 - [APIs Used](https://github.com/ScoRoc/Ryde#apis-used)
 - [User Stories](https://github.com/ScoRoc/Ryde#user-stories)
 - [About the project](https://github.com/ScoRoc/Ryde#about-the-project)
-- [Styling/Animations](https://github.com/ScoRoc/Ryde#styling--animations)
 - [Wireframes](https://github.com/ScoRoc/Ryde#wireframes)
 - [Next Steps](https://github.com/ScoRoc/Ryde#next-steps)
-- [WIP Screenshots](https://github.com/ScoRoc/Ryde#work-in-progress-screenshots)
-- [Desktop Wireframe Images](https://github.com/ScoRoc/Ryde#desktop)
-- [Mobile Wireframe Images](https://github.com/ScoRoc/Ryde#mobile)
 
 Ryde Homepage
-<!-- ![Ryde homepage](finished_screenshots/homepage.png) -->
+![Ryde homepage](/readme-images/finished_homepage.png)
 
 ---
 ## Technologies Used
@@ -45,37 +41,24 @@ Ryde Homepage
 | GET    | /                               | Home page.
 | POST   | /auth/signup                    | Sign up.
 | POST   | /auth/login                     | Log in.
-| POST   | /me/from/token                  | Lift login from token.
-
-<!-- Dryve stuff -->
-| POST   | /postARyde                      | Post a dryve.
-| GET    | /editARyde/:id                  | Load a dryve into edit form.
-| POST   | /editARyde/:id                  | Submit dryve edits.
-| POST   | /delete                         | Delete a dryve.
-| POST   | /complete                       | Complete a dryve.
-
+| POST   | /auth/me/from/token                  | Lift login from token.
+| POST   | /ryde                           | Post a dryve.
+| GET    | /ryde/:id/edit                  | Load a dryve into edit form.
+| PUT    | /ryde/:id                       | Submit dryve edits.
+| PUT    | /ryde/delete                    | Delete a dryve. 
+| PUT    | /ryde/complete                  | Complete a dryve.
 | POST   | /mydryves                       | Approve/deny ryders for a dryve.
 | GET    | /mydryves/:id                   | Get logged in user's dryves.
-
 | POST   | /ryders/confirmed               | Load confirmed ryders for a dryve.
 | POST   | /ryders/pending                 | Load pending ryders for a dryve.
-
-<!-- Rydes stuff -->
-| POST   | /myrydes                        | Request to join ryde.
+| PUT    | /myrydes                        | Request to join ryde.
 | GET    | /myrydes/:id                    | Get logged in user's rydes.
-
-
-<!-- Public profile stuff -->
-| GET    | /finduser/:id                   | Load public profile.
+| GET    | /profile/:id                    | Load public profile.
 | POST   | /profile/:id/reviewuser         | Submit review for other user.
-
-<!-- Private profile stuff -->
-| POST   | /profile/:id/removedryverstatus | Delete dryver details.
-| POST   | /profile/:id/becomedryver       | Submit dryver details.
-| POST   | /profile/:id/edit               | 
-| DELETE | /deleteuser                     | Delete proile
-
-<!-- Search stuff -->
+| PUT    | /profile/:id/removedryverstatus | Delete dryver details.
+| PUT    | /profile/:id/becomedryver       | Submit dryver details.
+| PUT    | /profile/:id/edit               | Submit changes from private profile page.
+| DELETE | /profile/:id                    | Delete proile
 | POST   | /bigsearch                      | Full ryde search.
 | POST   | /minisearch                     | Limited ryde search.
 
@@ -86,94 +69,191 @@ Ryde Homepage
 
 #### User
 
-| id       | name   | email  | password | wUrl   | yUrl
-|----------|--------|--------|---------|--------|------
-| auto-gen | string | string | text    | string | string
+name: {
+    type: String,
+    required: true,
+    minLength: 1,
+    maxLength: 99
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    minLength: 5,
+    maxLength: 99
+  },
+  password: {
+    type: String,
+    required: true,
+    minLength: 8,
+    maxLength: 99
+  },
+  homeAddress: {
+    street: String,
+    city: {
+      type: String,
+      required: true
+    },
+    state: {
+      type: String,
+      required: true,
+      minLength: 2,
+      maxLength: 2
+    },
+    zip: Number
+  },
+  workAddress: {
+    street: String,
+    city: {
+      type: String,
+    },
+    state: {
+      type: String,
+      minLength: 2,
+      maxLength: 2
+    },
+    zip: Number
+  },
+  dob: {
+    type: String,
+    required: true
+  },
+  dryver: {
+    type:Boolean,
+    default: false,
+  },
+  car: String,
+  license: String,
+  dryverRatings: Array,
+  dryverRatingAvg: Number,
+  dryverReviews: Array,
+  ryderRatings: Array,
+  ryderRatingAvg: Number,
+  ryderReviews: Array,
+  reviewedDryvers: Array,
+  reviewedRyders: Array,
+  setTrips: Array,
+  pendingTrips: Array,
+  deniedTrips: Array,
+  completedTrips: {
+    type:Array,
+    default:[]
+  },
+  deletedDryves: {
+    type:Array,
+    default:[]
+  },
+  completedDryves: Array,
+  image: String,
+  trips: [{ type: Schema.Types.ObjectId, ref: 'Trips' }]
+})
 
 #### Trip
-| id       | first_name | last_name | email  | password
-|----------|------------|-----------|--------|---------
-| auto-gen | string     | string    | string | hashed string
-
-
+driverId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  rydeName: {
+    type: String,
+    required: true
+  },
+  startAddress: {
+    street: String,
+    city: {
+      type: String,
+      required: true
+    },
+    state: {
+      type: String,
+      required: true,
+      minLength: 2,
+      maxLength: 2
+    },
+    zip: Number
+  },
+  endAddress: {
+    street: String,
+    city: {
+      type: String,
+      required: true
+    },
+    state: {
+      type: String,
+      required: true,
+      minLength: 2,
+      maxLength: 2
+    },
+    zip: Number
+  },
+  departDate: {
+    type: Number,
+    required: true
+  },
+  reoccurring: {
+    type: Boolean,
+    required: true
+  },
+  reoccurringDays: Array,
+  cost: {
+    type: Number,
+    required: true
+  },
+  costBreakdown: String,
+  smoking: Boolean,
+  pets: Boolean,
+  carType: {
+    type: String,
+    required: true
+  },
+  seats: {
+    type: Number,
+    required: true
+  },
+  comments: Array,
+  ridersId: Array,
+  pendingRiders: Array,
+  deniedRiders: Array,
+  completed: {
+    type:Boolean,
+    default: false},
+  deleted: {
+    type:Boolean,
+    default: false
+  }
 
 ## APIs Used
 [to the top](https://github.com/ScoRoc/Ryde#Ryde)
-- Avatar API
-- 
+- [Avatar API](https://www.avatarapi.com)
 
 ## User Stories
 [to the top](https://github.com/ScoRoc/Ryde#Ryde)
 
-1. 
-
-2. 
+1. As a daily commuter, I'd prefer to carpool over taking public transportation or driving my own car to work every day. Commuting is cheaper, more pleasant than riding the bus, and is better for the environment.
+2. My friends and I are going to a music festival, but none of us have a car! We'd love to carpool
+if someone else going has a few extra seats.
+3. I'm looking for something to do this weekend, and want to find trips that are leaving from my area. Maybe I'll make some new friends on the way!
 
 ## About the project
 [to the top](https://github.com/ScoRoc/Ryde#Ryde)
+Ryde was originally inspired by the traffic and difficult commutes prevalent in Seattle. Organizing carpools at scale could reduce the number of cars on the road, helping to clear room and reduce travel times at peak hours.
 
-
-#### The pages
-
-
-##### The Navbar
-
-
-## Styling / Animations
-[to the top](https://github.com/ScoRoc/Ryde#Ryde)
-
-
-<!-- ![footer](finished_screenshots/footer.png) -->
-
-#### Custom Built Animations
-
-
-##### Submit Buttons (Login/Signup pages)
-
-[Animation/Styling menu](https://github.com/ScoRoc/Ryde#custom-built-animations)
-
-
-#### Color Palette
-
-[Animation/Styling menu](https://github.com/ScoRoc/Ryde#custom-built-animations)
-
-Here are all of the colors used in the project:
-
-<!-- ![off white](color_palette/off-white.png) ![Bright Yello](color_palette/bright-yellow.png) ![Yellow](color_palette/yellow.png) ![Dull Yellow](color_palette/dull-yellow.png) -->
-
+Once we started thinking about it, however, we realized that the opportunity for Ryde was even larger than daily commutes. Carpooling can help save money and provide access in a number of situations, including remote weekend activities (like skiing), traveling to popular destinations (Sasquatch music festival), and more.
 
 ## Wireframes
 [to the top](https://github.com/ScoRoc/Ryde#Ryde)
 
-<!-- - [Desktop](https://github.com/ScoRoc/Ryde#landing-page) | [Mobile](https://github.com/ScoRoc/Ryde#landing-page-1) | **Landing Page:** home page of the entire site -->
+![alt text](https://raw.githubusercontent.com/ScoRoc/Ryde/master/readme-images/1.png "Landing page & map search")
+![alt text](https://raw.githubusercontent.com/ScoRoc/Ryde/master/readme-images/2.png "List search")
+![alt text](https://raw.githubusercontent.com/ScoRoc/Ryde/master/readme-images/3.png "Expandable result card")
+![alt text](https://raw.githubusercontent.com/ScoRoc/Ryde/master/readme-images/4.png "Log in & sign up")
 
 
 ## Next Steps
 [to the top](https://github.com/ScoRoc/Ryde#Ryde)
 
-Consolidate BigSearch and MiniSearch server routes.
-
-*END of content. Wireframe images below*
-
-### Desktop
-[to the top](https://github.com/ScoRoc/Ryde#Ryde)
-
-Desktop wireframes
-
-##### Landing page
-<!-- [Wireframe Menu](https://github.com/ScoRoc/Ryde#wireframes) | [Mobile version](https://github.com/ScoRoc/Ryde#landing-page-1) | [to the top](https://github.com/ScoRoc/Ryde#Ryde)
-![landing page](wireframes/desktop/desktop-landing-page.png) -->
-
----
-
-### Mobile
-[to the top](https://github.com/ScoRoc/Ryde#Ryde)
-
-Mobile wireframes
-
-##### Landing page
-<!-- [Wireframe Menu](https://github.com/ScoRoc/Ryde#wireframes) | [Desktop version](https://github.com/ScoRoc/Ryde#landing-page) | [to the top](https://github.com/ScoRoc/Ryde#Ryde)
-![landing page](wireframes/mobile/mobile-landing-page.png) -->
-
-
-[to the top](https://github.com/ScoRoc/Ryde#Ryde)
+- Improve ReadMe.md
+- Add payments API integration
+- Improve security
+- Clean and standardize code.
+- Consolidate BigSearch and MiniSearch server routes.

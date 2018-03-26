@@ -48,7 +48,7 @@ class ConnectedUpdateProfile extends Component {
     let workCity = this.workCity.value
     let workState = this.workState.value
     let workZip = this.workZip.value
-    axios.post('/profile/:id/edit',
+    axios.put('/profile/:id/edit',
       // {name, email, password, dob, homeStreet, homeCity, homeState, homeZip, workStreet, workCity, workState, workZip})
       {userId, name, email, dob, homeStreet, homeCity, homeState, homeZip, workStreet, workCity, workState, workZip})
         .then( result => {

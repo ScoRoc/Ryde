@@ -49,7 +49,7 @@ class ConnectedPostARyde extends Component {
       tripPets: false,
       carType: '',
       seats: '',
-      redirect:false
+      redirect: false
     }
     this.handlePostARydeSubmit = this.handlePostARydeSubmit.bind(this)
     this.handleReoccurringChange = this.handleReoccurringChange.bind(this)
@@ -183,7 +183,7 @@ class ConnectedPostARyde extends Component {
       }
     }
 
-    axios.post('/postARyde', trip).then(result => {
+    axios.post('/ryde', trip).then(result => {
       this.props.toggleRydesTab({ rydesTabIsToggled: false });
       if(!this.state.twoWay) {
         this.setState({
@@ -191,7 +191,7 @@ class ConnectedPostARyde extends Component {
         })
       }
       if (this.state.twoWay) {
-        axios.post('/postARyde', returnTrip).then(result => {
+        axios.post('/ryde', returnTrip).then(result => {
           if(this.state.twoWay){
             this.setState({
               redirect: true

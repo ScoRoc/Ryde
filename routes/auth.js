@@ -7,6 +7,7 @@ var Trips = require('../models/trips');
 var bcrypt = require('bcrypt');
 var request = require('request');
 
+
 var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
@@ -18,14 +19,10 @@ router.post('/login', (req, res, next) => {
       res.json({user: null, token: ''});
     } else {
       hashedPass = user.password
-      console.log(req.body.password)
-      console.log(hashedPass)
+
       passwordMatch = bcrypt.compareSync(req.body.password, hashedPass)
-      console.log(bcrypt.compareSync(req.body.password, hashedPass))
       if (passwordMatch) {
         console.log("Password is correct!")
-
-        console.log("hi sean")
         var token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
           expiresIn: 60 * 60 * 24 // expires in 24 hours
         })
@@ -40,23 +37,17 @@ router.post('/login', (req, res, next) => {
               {$set: {image: '<img src="http://www.everythingjustrocks.com/wp-content/uploads/default.png" width="200" height="200" />' }},
               {new: true}
             ).then(function(data) {
-              console.log('data', data)
               res.json({user: data.toObject(), token})
             })
           } else {
-            console.log('pp in', profilePic)
             User.findOneAndUpdate(
               {_id: user._id},
               {$set: {image: profilePic }},
               {new: true}
             ).then(function(data) {
-              console.log('data', data)
               res.json({user: data.toObject(), token})
             })
           }
-          // console.log('error:', error); // Print the error if one occurred
-          // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-          // console.log('body:', body); // Print the HTML for the Google homepage.
         });
       } else {
         console.log("Passwords don't match")
@@ -70,7 +61,6 @@ router.post('/login', (req, res, next) => {
 })
 
 router.post('/signup', (req, res, next) => {
-  console.log(req.body);
   User.findOne({ email: req.body.email.toLowerCase() }, function(err, user) {
     if (user) {
       res.redirect('/auth/signup')
@@ -101,7 +91,6 @@ router.post('/signup', (req, res, next) => {
           request(profilePicUrl, function (error, response, body) {
             var profilePic = ''
             profilePic = body.split('>')
-            console.log('pp split', profilePic)
             profilePic = profilePic[1] + ' />'
             if (profilePic === 'undefined />') {
               User.findOneAndUpdate(
@@ -112,7 +101,6 @@ router.post('/signup', (req, res, next) => {
                 res.json({user: data.toObject(), token})
               })
             } else {
-              console.log('pp in', profilePic)
               User.findOneAndUpdate(
                 {_id: user._id},
                 {$set: {image: profilePic }},
@@ -121,9 +109,6 @@ router.post('/signup', (req, res, next) => {
                 res.json({user: data.toObject(), token})
               })
             }
-            //console.log('error:', error); // Print the error if one occurred
-            // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-            // console.log('body:', body); // Print the HTML for the Google homepage.
           });
         }
       })

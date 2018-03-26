@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { liftCurrentPageToState, liftClickedUser } from '../redux/actions/index';
-// import store from '../redux/store/index';
 import PrivateProfile from './PrivateProfile';
 import { PublicProfile } from './PublicProfile';
 import axios from 'axios';
@@ -30,7 +29,7 @@ class ConnectedUserProfile extends Component {
 
   componentDidMount() {
     this.props.liftCurrentPageToState('/profile/' + this.props.match.params.id)
-    axios.get('/finduser/' + this.props.match.params.id)
+    axios.get('/profile/' + this.props.match.params.id)
       .then( result => {
         this.props.liftClickedUser(result.data)
         this.setState({ clickedUser: result.data})

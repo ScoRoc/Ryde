@@ -5,7 +5,7 @@ export const Footer = props => {
 
   return (
     <footer>
-      <p>RYDE &copy; 2018. All Rights Reserved</p>
+      <p>RYDE &copy; 2018. All Rights Reserved.</p>
     </footer>
   )
 }

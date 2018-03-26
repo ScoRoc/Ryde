@@ -45,7 +45,7 @@ class ConnectedListCard extends Component {
     let newRotation = e.target.style.transform === 'rotate(45deg)' ? 'rotate(0deg)' : 'rotate(45deg)';
     e.target.style.transform = newRotation;
     // Post addition to the database
-    axios.post('/myrydes', { userId: this.props.user._id, tripId: this.props.ryde._id })
+    axios.put('/myrydes', { userId: this.props.user._id, tripId: this.props.ryde._id })
       .then( (result) => {
         if (this.props.myRydesPage) {
           // If this handler gets called from the MyRydes page, we know the user is removing a trip.

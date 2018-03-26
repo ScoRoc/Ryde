@@ -1,11 +1,20 @@
 .ryder-dryver-details-wrapper {
-  color: #F7F7F7;
-  background: #18ED6E;
-  box-shadow: 0 0 .5vw rgba(0,0,0,.5), 0 0 .5vw rgba(0,0,0,.5) inset;
+  min-height: 33vh;
+  padding-bottom: .2vw;
+  background: #F7F7F7;
+  box-shadow: 0 0 .7vw .1vw rgba(0,0,0,.5), 0 0 .5vw rgba(0,0,0,.5) inset;
+}
+
+.ryder-dryver-details-wrapper h4 {
+  padding: .3vw;
+  color: white;
+  background: #306FB5;
 }
 
 .profile-details-box {
   padding: 1vw;
-  background: #306FB5;
-  box-shadow: 0 .5vh 1vw rgba(0,0,0,.5);
+}
+
+.review-form label {
+  margin: 0 1vw;
 }

@@ -13,7 +13,7 @@ class ConnectedNoLongerDryve extends Component {
   removeDryverStatus(e) {
     e.preventDefault()
     let userId = this.props.userId
-    axios.post('/profile/' + userId + '/removedryverstatus', { userId })
+    axios.put('/profile/' + userId + '/removedryverstatus', { userId })
       .then( result => {
         this.props.liftUpdatedUser(result.data)
         this.props.notifyUpdate('You are no longer a Dryver.')

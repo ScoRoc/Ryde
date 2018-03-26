@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import RydeForm from '../components/RydeForm';
 import { connect } from 'react-redux';
-import { liftTokenToState } from '../redux/actions/index';
-// import store from '../redux/store/index';
+import { Redirect } from 'react-router-dom';
+import { liftTokenToState, toggleRydesTab } from '../redux/actions/index';
 import axios from 'axios';
 
 const mapDispatchToProps = dispatch => {
   return {
-    liftTokenToState: data => dispatch(liftTokenToState(data))
+    liftTokenToState: data => dispatch(liftTokenToState(data)),
+    toggleRydesTab: data => dispatch(toggleRydesTab(data))
   }
 }
 
@@ -50,7 +51,8 @@ class ConnectedEditARyde extends Component {
       tripPets: false,
       carType: '',
       seats: '',
-      rydeLoaded: false
+      rydeLoaded: false,
+      redirect: false
     }
     // console.log('initial state: ', this.state)
     this.handlePostARydeSubmit = this.handlePostARydeSubmit.bind(this)
@@ -72,7 +74,7 @@ class ConnectedEditARyde extends Component {
 
   componentDidMount() {
     var getAndStorePost = () => {
-      axios.get('/editARyde/' + this.props.currentRyde)
+      axios.get('/ryde/' + this.props.currentRyde + '/edit')
       .then( result => {
         if (result.data && result.data.length > 0) {
           // console.log('results: ', result.data[0]);
@@ -88,7 +90,7 @@ class ConnectedEditARyde extends Component {
 
 
           this.setState({
-            reoccurring: false,
+            reoccurring: results.reoccurring,
             twoWay: false,
             rydeName: results.rydeName,
             startStreet: results.startAddress.street,
@@ -216,17 +218,24 @@ class ConnectedEditARyde extends Component {
     }
     console.log(trip)
 
-    axios.post('/editARyde/' + this.props.currentRyde, trip).then(result => {
+    axios.put('/ryde/' + this.props.currentRyde, trip).then(result => {
       // console.log('added one way ', result.data)
       console.log('Updated ryde!');
+      this.props.toggleRydesTab({ rydesTabIsToggled: false });
+      this.setState({
+        redirect: true
+      })
     }).catch(err => {
       console.log(err);
-    })
+    });
 
   }
 
 
   render() {
+    if(this.state.redirect){
+      return <Redirect to='/myrydes' />
+    }
     const reoccurringShowHide = this.state.reoccurring ? 'show' : 'hide';
     const twoWayShowHide = this.state.twoWay ? 'show' : 'hide';
     // console.log('currentState: ', this.state)

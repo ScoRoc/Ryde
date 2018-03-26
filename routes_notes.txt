@@ -1,0 +1,37 @@
+| CRUD   | ROUTE                           | FUNCTIONALITY
+|--------|---------------------------------|--------------
+| GET    | /                               | Home page.
+| POST   | /auth/signup                    | Sign up.
+| POST   | /auth/login                     | Log in.
+| POST   | /auth/me/from/token                  | Lift login from token.
+
+<!-- Dryve stuff -->
+| POST   | /ryde                           | Post a dryve.
+| GET    | /ryde/:id/edit                  | Load a dryve into edit form.
+| PUT    | /ryde/:id                       | Submit dryve edits.
+| PUT    | /ryde/delete                    | Delete a dryve. 
+| PUT    | /ryde/complete                  | Complete a dryve.
+
+| POST   | /mydryves                       | Approve/deny ryders for a dryve.
+| GET    | /mydryves/:id                   | Get logged in user's dryves.
+
+| POST   | /ryders/confirmed               | Load confirmed ryders for a dryve.
+| POST   | /ryders/pending                 | Load pending ryders for a dryve.
+
+<!-- Rydes stuff -->
+| PUT    | /myrydes                        | Request to join ryde.
+| GET    | /myrydes/:id                    | Get logged in user's rydes.
+
+<!-- Public profile stuff -->
+| GET    | /profile/:id                    | Load public profile.
+| POST   | /profile/:id/reviewuser         | Submit review for other user.
+
+<!-- Private profile stuff -->
+| PUT    | /profile/:id/removedryverstatus | Delete dryver details.
+| PUT    | /profile/:id/becomedryver       | Submit dryver details.
+| PUT    | /profile/:id/edit               | Submit changes from private profile page.
+| DELETE | /profile/:id                    | Delete proile
+
+<!-- Search stuff -->
+| POST   | /bigsearch                      | Full ryde search.
+| POST   | /minisearch                     | Limited ryde search.

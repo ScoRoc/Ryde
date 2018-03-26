@@ -41,7 +41,7 @@ class ConnectedReviewUser extends Component {
 
   render() {
     return(
-      <form onSubmit={(e) => this.handleSubmit(e)}>
+      <form className='review-form' onSubmit={(e) => this.handleSubmit(e)}>
         <input required name='this.props.inputName' value='1' checked={this.state.selectedRating === '1'} onChange={this.handleRatingChange} type='radio' id={this.props.userType + 'one-star'}/>
         <label htmlFor={this.props.userType + 'one-star'}>1</label>
         <input name='this.props.inputName' value='2' checked={this.state.selectedRating === '2'} onChange={this.handleRatingChange} type='radio' id={this.props.userType + 'two-star'} />
@@ -53,7 +53,7 @@ class ConnectedReviewUser extends Component {
         <input name='this.props.inputName' value='5' checked={this.state.selectedRating === '5'} onChange={this.handleRatingChange} type='radio' id={this.props.userType + 'five-star'} />
         <label htmlFor={this.props.userType + 'five-star'}>5</label>
         <br />
-        <input type='submit' className='rydeBlueBtn btn' value='Submit rating' />
+        <input type='submit' className='rydeGreenBtn btn' value='Submit rating' />
       </form>
     )
   }

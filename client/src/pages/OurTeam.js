@@ -20,7 +20,7 @@ class ConnectedOurTeam extends Component {
     return (
       <div>
         <div className='center'>
-          <h1 className='our-team-h1'>Our Team</h1>
+          <h1>Our Team</h1>
         </div>
         <div className='row'>
           <div className='col s12 m3 team-member-col'>

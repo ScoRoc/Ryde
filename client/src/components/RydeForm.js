@@ -5,7 +5,7 @@ import { Input } from 'react-materialize';
 const RydeForm = props => {
   const hideSwitchOnEdit = props.isEditPage ? 'switch hide' : 'switch show'
   const submitPostEdit = props.isEditPage ? 'Edit Your Ryde' : 'Post Your Ryde'
-  const showReoccurringOnEdit = props.isEditPage || props.reoccurringShowHide === 'show' ? 'show' : 'hide'
+  const showReoccurringOnEdit = props.reoccurring || props.reoccurringShowHide === 'show' ? 'show' : 'hide'
 
   let seats = props.seats.toString();
 

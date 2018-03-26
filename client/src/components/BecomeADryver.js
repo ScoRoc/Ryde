@@ -15,7 +15,7 @@ class ConnectedBecomeADryver extends Component {
     let car = this.carType.value
     let driversLicense = this.driversLicense.value
     let userId = this.props.userId
-    axios.post('/profile/' + this.props.userId + '/becomedryver', {car, driversLicense, userId})
+    axios.put('/profile/' + this.props.userId + '/becomedryver', {car, driversLicense, userId})
       .then( result => {
         this.props.liftUpdatedUser(result.data)
         this.props.notifyUpdate('You are now a Dryver! Check out your new Post a Ryde page in the navbar.')

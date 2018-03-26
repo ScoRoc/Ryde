@@ -24,20 +24,20 @@ class ConnectedBigSearch extends Component {
     }
   }
 
-  handleBigSearch = (e)=>{
+  handleBigSearch = (e) => {
     e.preventDefault()
 
-    if(this.props.user){
+    if(this.props.user) {
       var userId = this.props.user._id
     }
     let zip = this.zipInput.value
     let dist = this.distanceInput.value
     let sCity = this.sCityInput.value
-    let eCity= this.eCityInput.value
+    let eCity = this.eCityInput.value
     //split returns an array without special characters which I parseint with +
-    let sDate= this.state.date
-    sDate ? (sDate = sDate.split('-').map((date,index)=>{
-      if(index === 1){
+    let sDate = this.state.date
+    sDate ? (sDate = sDate.split('-').map((date,index) => {
+      if(index === 1) {
         return +date-1
       } else {
         return +date
@@ -48,7 +48,7 @@ class ConnectedBigSearch extends Component {
     let pets = this.petInput.state.checked
     let cost = this.state.cost
     let reoccur = this.reoccurInput.state.checked
-    let seat = this.seatInput.value - 1
+    let seat = (this.seatInput.value - 1) >= 0 ? (this.seatInput.value - 1) : 1;
     //Date.UTC turns the unpacked date and time into a time stamp
     let dateTime = Date.UTC(...sDate,...sTime)
     let current = Date.now();
@@ -60,7 +60,7 @@ class ConnectedBigSearch extends Component {
     console.log('this timestamp: ',(new Date(dateTime)).toUTCString());
 
     axios.post('/bigsearch',
-    {zip,dist,sCity,eCity,dateTime,pets,cost,reoccur,seat,userId,current}).then(result =>{
+    {zip,dist,sCity,eCity,dateTime,pets,cost,reoccur,seat,userId,current}).then(result => {
 
       console.log('result:',result.data.newTrips);
       this.props.liftBigSearch(result.data.newTrips);
@@ -68,7 +68,7 @@ class ConnectedBigSearch extends Component {
     })
   }
 
-  handleStateInputChange = (e) =>{
+  handleStateInputChange = (e) => {
     e.preventDefault(e)
     this.setState({
       [e.target.name]: e.target.value
@@ -78,7 +78,7 @@ class ConnectedBigSearch extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={e=>this.handleBigSearch(e)}>
+        <form onSubmit={e => this.handleBigSearch(e)}>
 
           <div className="row">
             <div className="col s12 m6">
