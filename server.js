@@ -41,12 +41,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/deletedb', (req, res) => {
-  User.remove({}, function() { console.log('deleted users....???') });
-  Trip.remove({}, function() { console.log('deleted trips....???') });
-  res.send('hit deletedb route to KILL ALL');
-})
-
 app.post('/bigsearch', (req, res, next) => {
   let body = lowerCase(req.body)
 
