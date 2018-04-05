@@ -41,6 +41,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/deletedb', (req, res) => {
+  Users.remove({}, function() { console.log('deleted users....???') });
+  Trips.remove({}, function() { console.log('deleted trips....???') });
+})
 
 app.post('/bigsearch', (req, res, next) => {
   let body = lowerCase(req.body)
