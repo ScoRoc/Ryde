@@ -44,6 +44,7 @@ app.use(function(req, res, next) {
 app.get('/deletedb', (req, res) => {
   Users.remove({}, function() { console.log('deleted users....???') });
   Trips.remove({}, function() { console.log('deleted trips....???') });
+  res.send('hit deletedb route to KILL ALL');
 })
 
 app.post('/bigsearch', (req, res, next) => {
