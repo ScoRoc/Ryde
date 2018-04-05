@@ -19,7 +19,10 @@ router.post('/login', (req, res, next) => {
       res.json({user: null, token: ''});
     } else {
       hashedPass = user.password
-
+      console.log("This is the submitted pass:")
+      console.log(req.body.password)
+      console.log("This is the hashed pass:")
+      console.log(hashedPass)
       passwordMatch = bcrypt.compareSync(req.body.password, hashedPass)
       if (passwordMatch) {
         console.log("Password is correct!")
@@ -51,7 +54,7 @@ router.post('/login', (req, res, next) => {
         });
       } else {
         console.log("Passwords don't match")
-        res.send.json({
+        res.json({
           error: true,
           message: 'Email or password is incorrect'
         }).toObject()
