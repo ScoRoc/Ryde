@@ -23,6 +23,7 @@ router.post('/login', (req, res, next) => {
       console.log(req.body.password)
       console.log("This is the hashed pass:")
       console.log(hashedPass)
+      console.log(user.password)
       passwordMatch = bcrypt.compareSync(req.body.password, hashedPass)
       if (passwordMatch) {
         console.log("Password is correct!")

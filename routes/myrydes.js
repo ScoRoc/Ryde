@@ -39,6 +39,7 @@ router.put('/', (req, res, next) => {
       } else {
         trip.pendingRiders.push(userId);
         user.pendingTrips.push(tripId);
+        console.log("We just modified the user...")
         trip.save(function (err, updatedTrip) {
           user.save(function (err, updatedUser) {
             res.send('Added user to pending riders');

@@ -105,8 +105,10 @@ userSchema.methods.authenticated = function(password, cb) {
 }
 
 userSchema.pre('save', function(next) {
-  var hash = bcrypt.hashSync(this.password, 10)
-  this.password = hash;
+  if (this.isNew) {
+    var hash = bcrypt.hashSync(this.password, 10)
+    this.password = hash;
+  }
   next();
 })
 
