@@ -57,7 +57,7 @@ router.post('/login', (req, res, next) => {
         res.json({
           error: true,
           message: 'Email or password is incorrect'
-        }).toObject()
+        })
       }
     }
   })
