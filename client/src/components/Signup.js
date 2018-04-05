@@ -45,6 +45,7 @@ class ConnectedSignup extends Component {
     axios.post('/auth/signup',
       {name, email, password, dob, homeStreet, homeCity, homeState, homeZip, workStreet, workCity, workState, workZip})
         .then( result => {
+          console.log("Just clicked submit on signup")
         localStorage.setItem('rydeAppToken', result.data.token)
         this.props.liftTokenToState(result.data)
         this.props.notifySuccess('signed up!')
