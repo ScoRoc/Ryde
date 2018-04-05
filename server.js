@@ -12,8 +12,8 @@ var bcrypt = require('bcrypt');
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ryde');  // change db name here
-// mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect('mongodb://localhost/ryde');  // change db name here
+mongoose.connect(process.env.MONGODB_URI);
 
 // added a comment
 
