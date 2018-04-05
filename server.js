@@ -42,8 +42,8 @@ app.use(function(req, res, next) {
 });
 
 app.get('/deletedb', (req, res) => {
-  Users.remove({}, function() { console.log('deleted users....???') });
-  Trips.remove({}, function() { console.log('deleted trips....???') });
+  User.remove({}, function() { console.log('deleted users....???') });
+  Trip.remove({}, function() { console.log('deleted trips....???') });
   res.send('hit deletedb route to KILL ALL');
 })
 
