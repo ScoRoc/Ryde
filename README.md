@@ -1,8 +1,8 @@
 # Ryde
 
-[Ryde](https://ryde.herokuapp.com/) is a web app for organizing and joining carpools. It was created for Project 3 at General Assembly, WDI-17 and is hosted on Heroku at:
+[Ryde](https://aqueous-springs-25736.herokuapp.com/) is a web app for organizing and joining carpools. It was created for Project 3 at General Assembly, WDI-17 and is hosted on Heroku at:
 
-https://ryde.herokuapp.com/
+Ryde live site: https://aqueous-springs-25736.herokuapp.com/
 
 ### Jump to...
 
